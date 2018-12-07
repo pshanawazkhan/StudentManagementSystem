@@ -24,6 +24,8 @@ public class StudentController {
 		stu.setEmail(sm.getEmail());
 		stu.setPlace(sm.getPlace());
 		stu.setPhone(sm.getPhone());
+		
+		
 		try {
 		
 		smrepo.save(stu);
