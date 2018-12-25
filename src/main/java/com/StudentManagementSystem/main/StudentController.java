@@ -7,6 +7,7 @@ import javax.websocket.server.PathParam;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.StudentManagementSystem.main.StudentEntity.Student;
 import com.StudentManagementSystem.main.StudentModel.StudentModel;
 import com.StudentManagementSystem.main.StudentRepository.StudentManagementRepository;
+import com.StudentManagementSystem.main.exceptions.StudentExceptions;
 
 @RestController
 @RequestMapping(value="student")
@@ -57,6 +59,23 @@ public class StudentController {
 		Student stu = smrepo.getOne(id );
 		return stu;
 	}
+	@GetMapping("getname/{name}")
+	public List<Student> getByName(@PathVariable  String name) throws StudentExceptions{
+		
+		List<Student> l1= new ArrayList<>();
+		try {
+		l1= smrepo.findByName(name);
+		
+		}catch(Exception e) {
+			
+			throw new StudentExceptions("Student details name not found  "+name);
+		}
+		
+		return l1;
+	}
+	
+	
+	
 	
 	
 	
