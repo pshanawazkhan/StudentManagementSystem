@@ -14,6 +14,7 @@ public class ExceptionAdvisor {
 	@ExceptionHandler({StudentExceptions.class})
 	public ResponseEntity<StudentError> mapStudentException(StudentExceptions sexp){
 		
+		System.out.println("ExceptionAdvisor class ------------------>");
 		StudentError se = new StudentError(HttpStatus.INTERNAL_SERVER_ERROR.value(),sexp.getMessage());
 		
 		return  new ResponseEntity<StudentError>(se,HttpStatus.INTERNAL_SERVER_ERROR);

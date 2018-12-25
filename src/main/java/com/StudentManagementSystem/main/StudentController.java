@@ -62,11 +62,13 @@ public class StudentController {
 	@GetMapping("getname/{name}")
 	public List<Student> getByName(@PathVariable  String name) throws StudentExceptions{
 		
-		List<Student> l1= new ArrayList<>();
-		try {
+		List<Student> l1=null;
+	
 		l1= smrepo.findByName(name);
-		
-		}catch(Exception e) {
+		if(l1.isEmpty()) {
+		System.out.println("l1.isEmpty ---------->"+l1.isEmpty());
+	
+	
 			
 			throw new StudentExceptions("Student details name not found  "+name);
 		}
